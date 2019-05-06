@@ -1,0 +1,14 @@
+stages:
+  - publish_test
+
+publish_project:
+  stage: publish_test
+  only:
+    - develop
+    - master
+    - release
+  script:
+    - echo "Pull Develop Branch"
+    - cd /data/www/lotteryTicket
+    - git pull
+    - /application/php/bin/php artisan queue:restart
